@@ -1,2 +1,2 @@
-# ollama-webui
-ollama webui
+# ollama-webui-lite
+ollama webui lite
