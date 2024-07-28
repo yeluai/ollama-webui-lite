@@ -1,0 +1,182 @@
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--
+    <link rel="icon" href="../../favicon.ico">-->
+    
+
+    <title>ollama-webui-lite</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assests/bootstrap-4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+   
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container">
+       <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="http://www.datacups.com/page_ollama-webui-lite"  target="_blank">官网</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" href="https://pauumjtcr5k.feishu.cn/wiki/QXvFwtHhci0XkYkyv9OcKrUQnMd?from=from_copylink"  target="_blank">AI和开源技术交流群</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="https://github.com/yeluai/ollama-webui-lite"  target="_blank">github项目地址</a>
+        </li>
+
+
+
+        <!--
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>-->
+      </ul>
+    </div>
+   
+
+   
+
+    <div class="container " role="main">
+
+
+      
+      <form class="form-inline">
+        <div class="form-group  mx-sm-3 mb-2">
+          <label for="exampleFormControlSelect1">当前模型:<span id="modelSpan">llama3</span></label><br/> &nbsp&nbsp&nbsp
+          <select class="form-control"  id="modelSelect">
+            <option></option>
+            <option>llama3</option>
+            <option>gemma2</option>
+            <option>llava</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary mb-2"  id="selModelBtn">选择模型</button>
+        &nbsp&nbsp&nbsp
+        <button type="submit" class="btn btn-primary mb-2"  id="modelRefreshBtn">刷新</button>
+
+      </form>
+
+
+
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="chatContent">
+        
+        <p>聊天内容...</p>
+         <div class="page-header">
+        <h1>Thumbnails</h1>
+      </div>
+     
+
+
+
+      </div>
+
+
+      <div class="page-header">
+        <h1>Buttons</h1>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="请输入你的问题" aria-label="Recipient's username" aria-describedby="button-addon2" id="prompt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="promptBtn">提交</button>
+        </div>
+      </div>
+
+     
+
+
+
+
+     
+
+
+     
+
+
+
+
+
+
+
+      
+
+
+      
+
+     
+
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="./assests/jquery/jquery-3.7.1.min.js"><\/script>')</script>
+
+
+      <script type="text/javascript">
+        var baseUrl = "http://localhost:11434/api/";
+        var generate_end = "generate";
+        var chat_end = "chat";
+        var tags_end = "tags";
+
+
+        $("#selModelBtn").click(function(){
+            var model = $("#modelSelect").find("option:selected").val();
+            alert(model);
+            $("#modelSpan").text(model);
+
+        });
+
+
+        $("#modelRefreshBtn").click(function(){
+            $.post(baseUrl+tags_end,function(data,status){
+                alert("Data: " + data + "nStatus: " + status);
+            });
+        });
+
+
+      </script>
+   
+    
+  </body>
+</html>
